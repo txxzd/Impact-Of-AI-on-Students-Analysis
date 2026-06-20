@@ -1,12 +1,12 @@
-# Impact of AI on Students — Exploratory Data Analysis
+# Impact of AI on Students - Exploratory Data Analysis and Dashboard
 
-An exploratory data analysis (EDA) of the [AI Impact on Students](https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students/data) dataset from Kaggle, looking at how generative AI usage relates to student academic performance, study habits, and well-being.
+An exploratory data analysis (EDA) and Streamlit dashboard for the [AI Impact on Students](https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students/data) dataset from Kaggle, looking at how generative AI usage relates to student academic performance, study habits, and well-being.
 
 ## Dataset
 
 - **Source:** [AI Impact on Students (Kaggle)](https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students/data)
 - **File:** `data.csv`
-- **Size:** 50,000 rows × 16 columns
+- **Size:** 50,000 rows x 16 columns
 
 ### Columns
 
@@ -29,20 +29,23 @@ An exploratory data analysis (EDA) of the [AI Impact on Students](https://www.ka
 | `Skill_Retention_Score` | Score representing retention of learned skills |
 | `Burnout_Risk_Level` | Burnout risk category (Low, Medium, High) |
 
-## Goals of the Analysis
+## Dashboard Features
 
-- Understand the distribution of GenAI usage across majors, years, and institutional policies
-- Examine the relationship between GenAI usage and the change in GPA (`Post_Semester_GPA` vs `Pre_Semester_GPA`)
-- Explore how AI dependency, prompt engineering skill, and tool diversity relate to skill retention
-- Investigate links between AI usage patterns, exam anxiety, and burnout risk
+- Sidebar filters for major, year, policy, paid access, prompt skill, and burnout level
+- Overview metrics for usage, GPA change, retention, and improvement rate
+- Usage visualizations for majors, use cases, skill distribution, and policy differences
+- Outcomes and well-being charts for retention, burnout, dependency, anxiety, and a Spearman correlation heatmap
+- Policy summary with GPA comparisons and statistical test output
 
 ## Project Structure
 
-```
+```text
 .
-├── data.csv              # Raw dataset (50,000 students, 16 features)
-├── data_analysis.ipynb   # Jupyter notebook containing the EDA
-└── README.md
+|- data.csv
+|- data_analysis.ipynb
+|- app.py
+|- requirements.txt
+`- README.md
 ```
 
 ## Getting Started
@@ -50,14 +53,12 @@ An exploratory data analysis (EDA) of the [AI Impact on Students](https://www.ka
 ### Requirements
 
 - Python 3.9+
-- pandas
-- matplotlib / seaborn
-- jupyter
+- pip
 
 Install dependencies:
 
 ```bash
-pip install pandas matplotlib seaborn jupyter
+pip install -r requirements.txt
 ```
 
 ### Running the Notebook
@@ -65,6 +66,16 @@ pip install pandas matplotlib seaborn jupyter
 ```bash
 jupyter notebook data_analysis.ipynb
 ```
+
+### Running the Dashboard
+
+```bash
+streamlit run app.py
+```
+
+## Interpretation Note
+
+This project is exploratory and observational. The charts and statistical tests in the notebook and dashboard should be interpreted as showing associations and group differences, not proof of causation.
 
 ## License
 
