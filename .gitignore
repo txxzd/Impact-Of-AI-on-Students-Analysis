@@ -1,4 +1,5 @@
 confusion_matrices.png
 feature_importance.png
+threshold_sweep.png
 __pycache__/
 *.pyc
