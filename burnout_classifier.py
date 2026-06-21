@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
+from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 from xgboost import XGBClassifier
@@ -19,33 +19,10 @@ features = [
     "Traditional_Study_Hours",
     "Perceived_AI_Dependency",
     "Anxiety_Level_During_Exams",
-    "Tool_Diversity",
-    "Paid_Subscription",
-    "Pre_Semester_GPA",
-    "Prompt_Engineering_Skill",
-    "Year_of_Study",
-    "Major_Category",
-    "Institutional_Policy",
 ]
 
 X = df[features].copy()
 y = df[target].copy()
-
-# ── Encode ──────────────────────────────────────────────────────────────────
-
-# Ordinal features
-ordinal_maps = {
-    "Prompt_Engineering_Skill": ["Beginner", "Intermediate", "Advanced"],
-    "Year_of_Study": ["Freshman", "Sophomore", "Junior", "Senior", "Graduate"],
-}
-for col, order in ordinal_maps.items():
-    X[col] = OrdinalEncoder(categories=[order]).fit_transform(X[[col]])
-
-# Nominal features -> one-hot
-X = pd.get_dummies(X, columns=["Major_Category", "Institutional_Policy"], drop_first=True)
-
-# Boolean -> int
-X["Paid_Subscription"] = X["Paid_Subscription"].astype(int)
 
 # Encode target with explicit ordering
 target_order = ["Low", "Medium", "High"]
@@ -120,6 +97,6 @@ plt.tight_layout()
 plt.savefig("feature_importance.png", dpi=150)
 plt.show()
 
-print("\nTop 5 features:")
-for feat, imp in importances.tail(5).iloc[::-1].items():
-    print(f"  {feat:35s} {imp:.4f}")
+print("\nFeature importances:")
+for feat, imp in importances.iloc[::-1].items():
+    print(f"  {feat:30s} {imp:.4f}")
